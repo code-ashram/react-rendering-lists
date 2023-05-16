@@ -2,7 +2,7 @@ import './App.css'
 import { people } from './data.js'
 import { getImageUrl } from './utils.js'
 
-function List({ profession }) {
+const List = () => {
   const chemists = people.filter((person) =>
     person.profession === 'chemist'
   )
