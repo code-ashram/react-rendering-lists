@@ -1,42 +1,30 @@
 import './App.css'
-import {people} from './data.js'
-import {getImageUrl} from './utils.js'
+import {recipes} from './data.js'
 
-const chemists = people.filter((person) => person.profession === 'chemist')
-
-const everyOneElse = people.filter((person) => person.profession !== 'chemist')
-
-const ListItem = ({person}) => (
+const ListItem = ({ingredient}) => (
     <li>
-        <img
-            src={getImageUrl(person)}
-            alt={person.name}
-        />
-        <p>
-            <b>{person.name}:</b>
-            {' ' + person.profession + ' '}
-            known for {person.accomplishment}
-        </p>
+        {ingredient}
     </li>
 )
 
 const List = ({title, list}) => (
-    <>
+    <div>
         <h2>{title}</h2>
         <ul>
-            {list.map((person) => (
-                <ListItem key={person.id} person={person}/>
+            {list.map((ingredients, index) => (
+                <ListItem key={index} ingredient={ingredients}/>
             ))}
         </ul>
-    </>
+    </div>
 )
 
 const CommonList = () => (
-    <article>
-        <h1>Scientists</h1>
-        <List title="Chemists" list={chemists}/>
-        <List title="Other" list={everyOneElse}/>
-    </article>
+    <div>
+        <h1>Recipes:</h1>
+        {recipes.map((recipe) => (
+            <List key={recipe.id} title={recipe.name} list={recipe.ingredients}/>
+        ))}
+    </div>
 )
 
 export default CommonList
