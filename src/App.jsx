@@ -1,30 +1,25 @@
 import './App.css'
-import {recipes} from './data.js'
 
-const ListItem = ({ingredient}) => (
-    <li>
-        {ingredient}
-    </li>
+const poem = {
+    lines: [
+        'I write, erase, rewrite',
+        'Erase again, and then',
+        'A poppy blooms.'
+    ]
+};
+
+const Poem = () => (
+    <article>
+        {poem.lines.map((line, index) => (
+                <>
+                    {index > 0 && <hr/>}
+                    <p key={index}>
+                        {line}
+                    </p>
+                </>
+            )
+        )}
+    </article>
 )
 
-const List = ({title, list}) => (
-    <div>
-        <h2>{title}</h2>
-        <ul>
-            {list.map((ingredients, index) => (
-                <ListItem key={index} ingredient={ingredients}/>
-            ))}
-        </ul>
-    </div>
-)
-
-const CommonList = () => (
-    <div>
-        <h1>Recipes:</h1>
-        {recipes.map((recipe) => (
-            <List key={recipe.id} title={recipe.name} list={recipe.ingredients}/>
-        ))}
-    </div>
-)
-
-export default CommonList
+export default Poem
